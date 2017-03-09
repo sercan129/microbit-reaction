@@ -1,12 +1,11 @@
-# Add your Python code here. E.g.
 from microbit import *
 from random import randrange
-
+score=0
 delay=1500 #ms
 factor=.85
 
 def choose_player():
-    east_player = randrange(0,1)
+    east_player = randrange(0,2)
     if east_player:
         display.show(Image.ARROW_E)
     else:
@@ -24,9 +23,8 @@ def correct_button_pressed(echosen):
 while delay > 1:
     echosen = choose_player()
     sleep(delay)
-
-    delay = delay * factor
-    for i in range(3):
-        display.show(Image.SQUARE)
-        sleep(100)
-        display.clear()
+    if correct_button_pressed(echosen) == False:
+        display.scroll("your score is "+str(score))
+        break
+    else:
+        score=score+1
