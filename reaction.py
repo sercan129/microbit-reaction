@@ -6,7 +6,7 @@ delay=1500 #ms
 factor=.85
 
 def choose_player():
-    east_player = randrange(0,2)
+    east_player = randrange(0,1)
     if east_player:
         display.show(Image.ARROW_E)
     else:
@@ -24,12 +24,9 @@ def correct_button_pressed(echosen):
 while delay > 1:
     echosen = choose_player()
     sleep(delay)
-    if not correct_button_pressed(echosen):
-        display.scroll("GAME OVER")
-        break
+
     delay = delay * factor
     for i in range(3):
         display.show(Image.SQUARE)
         sleep(100)
         display.clear()
-        sleep(100)
